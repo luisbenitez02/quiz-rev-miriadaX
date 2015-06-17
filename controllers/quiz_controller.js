@@ -13,6 +13,6 @@ exports.answer = function(req, res){
 
 exports.author = function(req, res){
 	res.render('quizes/author', {name: 'Luis Benitez'});
-}
+};
 /*esa variable pregunta se la estamos enviando a las vistas en la
 carpeta quizes dentro de views*/
