@@ -224,3 +224,18 @@ footer, .push {
 .buto{
 	padding-top: 20px;
 }
+
+div.imagen, img.author-pic{
+	width: 120px;
+	height: 140px;
+}
+div.imagen{
+	padding-top: 18px;
+	margin: auto;
+	padding-left: 265px;
+}
+h2.autor, p.sub-autor{
+	text-align: center;
+}
+
+
