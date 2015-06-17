@@ -13,4 +13,7 @@ router.get('/', function(req, res, next) {
 router.get('/quizes/question', quizController.question);//esto va a estar conectado con las vistas
 //por ello se creo la carpeta quizes y se van a crear unos index muy cools
 router.get('/quizes/answer', quizController.answer);
+
+//vamos a crear ruta de autor
+router.get('/author', quizController.author);
 module.exports = router;
