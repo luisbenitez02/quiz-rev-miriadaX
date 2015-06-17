@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+	<meta charset="utf-8">
+	<title> Preguntas </title>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="stylesheet" type="text/css" media="only screen and (min-width: 851px)" href="/stylesheets/wide.css">
+	<link rel="stylesheet" type="text/css" media="only screen and (min-device-width : 320px) and (max-device-width : 480px)" href="/stylesheets/phone.css">
+</head>
+<body>
+	<div class="page-wrap">
+		<header class="main">
+			<h2>Quiz Game</h2>
+			<div id="botons">
+				<button class="inter" id="reg">Registrate</button>
+				<button class="inter" id="acces">Acceder</button>
+			</div>
+		</header>
+			<nav class="main">
+			<ul class="main-list">
+				<li class="main-item"><a href="/" class="main-link" id="link-1">Inicio</a></li><li class="main-item"><a href="/quizes/question" class="main-link" id="link-2">Preguntas</a></li>
+			</ul>
+		</nav>
+		<section class="content" id="s1">
+			<%- body %>
+		</section>
+		<div class="push"></div>
+	</div>
+	<footer class="pie" id="f1">
+			<p class="footer-text" id="izq"><a href="http://es.wikipedia.org/wiki/Quiz">¿Que es un Quiz?</a></p>
+			<p class="footer-text"><a href="#">Github</a></p>
+			<br>
+			<div class="centerone"><p class="info-display"></p></div>
+		</footer>
+</body>
+</html>

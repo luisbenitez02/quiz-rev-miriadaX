@@ -1,0 +1,26 @@
+.info-display:before{
+	content: "Estilo Wide";
+}
+
+nav.main{
+	width: 265px;
+	height: 350px;
+	float: left;
+}
+
+.main-item{
+	display: block;
+}
+.inicio-text, .text1{
+	margin-left: 300px;
+}
+#izq{
+	margin-left: 300px;
+}
+.form-pregunta{
+	margin-left:300px;
+}
+.respuest-data{
+	margin-top: 15px;
+	font-size: 52px;
+}
