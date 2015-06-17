@@ -85,3 +85,8 @@ section{
 	color: white;
 	font-size: 38px;
 }
+.footer-text a{
+	width: 160px;
+	font-size: 28px;
+	margin-bottom: 10px;
+}
