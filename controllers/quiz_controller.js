@@ -1,14 +1,21 @@
+var models = require('../models/models.js');//importamos el modelo
+
 // GET /quizes/question
 exports.question = function(req,res){
-	res.render('quizes/question', {pregunta: '¿Cual es la capital de Italia?'});
+	//con findAll buscamos todos los datos en la base de datos (con find() buscamos uno creo no...)
+	models.Quiz.findAll().then(function(quiz){
+		res.render('quizes/question', {pregunta: quiz[0].pregunta});//mostramos las unica pregunta en la DB
+	});
 };
 
 exports.answer = function(req, res){
-	if (req.query.respuesta === 'Roma') {
+	models.Quiz.findAll().then(function(quiz){
+		if (req.query.respuesta === quiz[0].respuesta) {
 		res.render('quizes/answer', {respuesta: 'Correcto'});
-	} else {
+		} else {
 		res.render('quizes/answer', {respuesta: 'Incorrecto'});
-	}
+		};
+	});
 };
 
 exports.author = function(req, res){
