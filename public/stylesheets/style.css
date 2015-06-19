@@ -93,6 +93,7 @@ nav.main{
 	min-height: 350px;
 	background-color: #01579b;
 	color: white;
+	height: 350px;
 }
 .inicio-text{
 	font-size: 3em;
@@ -236,6 +237,9 @@ div.imagen{
 }
 h2.autor, p.sub-autor{
 	text-align: center;
+}
+.list-question a{
+	color: white;
 }
 
 
