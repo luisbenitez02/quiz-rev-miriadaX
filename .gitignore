@@ -29,6 +29,7 @@ node_modules
 .AppleDouble
 .LSOverride
 npm-debug.log
+quiz.sqlite
 
 # Thumbnails
 ._*

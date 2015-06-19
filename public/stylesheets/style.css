@@ -237,5 +237,8 @@ div.imagen{
 h2.autor, p.sub-autor{
 	text-align: center;
 }
+.list-question a{
+	color: white;
+}
 
 
