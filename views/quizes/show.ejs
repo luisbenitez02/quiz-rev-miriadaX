@@ -1,0 +1,7 @@
+<!-- esto antes era la vista question.ejs  -->
+<form method="get" action="/quizes/<%= quiz.id %>/answer" class="form-pregunta">
+		<p class="pregunta-text"> <%= quiz.pregunta %> </p> <!--tomo la pregunta-->
+		<input type="text" name='respuesta' placeholder="Responda Aquí" value="" class="cajetin-p">
+
+		<input type="submit" value="Enviar" class="boton-send">
+	</form>
