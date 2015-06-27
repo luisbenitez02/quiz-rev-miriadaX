@@ -47,6 +47,18 @@ sequelize.sync().then(function(){/*OJO ESTO AHORA SE HACE CON PROMESAS--*/
 			Quiz.create({
 				pregunta: '¿Cual es la capital de Portugal?',
 				respuesta: 'Lisboa'
+			});
+			Quiz.create({
+				pregunta: '¿Cual es el Super-heroe grande y verde?',
+				respuesta: 'Hulk'
+			});
+			Quiz.create({
+				pregunta: '¿Cual es el Super-heroe ciego?',
+				respuesta: 'Daredevil'
+			});
+			Quiz.create({
+				pregunta: '¿Cual es el Super-heroe con un martillo?',
+				respuesta: 'Thor'
 			})
 			.then(function(){
 				console.log('Base de datos inicializada');

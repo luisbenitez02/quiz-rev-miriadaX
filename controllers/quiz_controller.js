@@ -16,15 +16,25 @@ exports.load = function(req, res, next, quizId){
 			}
 		}
 	).catch(function(error){next(error);});
-}
+};
 
 exports.index = function(req, res){
-	models.Quiz.findAll().then(function(quizes) {
-		//buscamos todas las preguntas
-		res.render('quizes/index', { quizes : quizes});
-		}
-	).catch(function(error){ next(error);})//si hay error lleva a l siguiente middleware de error
+	var param = req.query.search;
+    var texto = ('%' + param + '%').replace(/ /g,'%');
+    if (param) {//si hay parametro opcional hago esto:
+        models.Quiz.findAll({
+        	where: ["pregunta like ?", texto],
+            order: [['pregunta', 'ASC']]//ESTOS DOS CORCHETES INDISPENSABLES
+        }).then(function(quizes) {   
+            res.render('quizes/index', {quizes: quizes});
+        }).catch(function(error) {next(error);});
+    }else {//si no hay nada pinto toda la lista
+            models.Quiz.findAll().then(function(quizes) {
+                res.render('quizes/index', {quizes: quizes});
+            }).catch(function(error) {next(error);});
+    }
 };
+	
 //antes export.question
 exports.show = function(req, res){
 //findAll buscamos todos los datos en la base de datos (con find() buscamos uno)
