@@ -45,7 +45,7 @@ button#acces{
 	padding-right: 10px;
 }
 .content{
-	height: 600px;
+	height: 800px;
 }
 
 .descrip-link{
@@ -92,4 +92,19 @@ section{
 }
 .list-question a{
 	font-size: 32px;
+}
+.busqueda{
+	padding-top: 120px;
+	padding-left: 0px;
+}
+
+.busqueda-box{
+	width: 256px;
+	height: 60px;
+	font-size: 40px;
+}
+
+.busqueda-send{
+	height: 60px;
+	font-size: 40px;
 }
