@@ -15,8 +15,8 @@ router.param('quizId', quizController.load);//si el parametro existe ejecuta el 
 //Definimos rutas para el acceso
 /*router.get('/quizes/question', quizController.question);*/
 //Se creo la carpeta quizes y se van a crear unos index
-router.get('/quizes:search?', quizController.index);//acceso a la lista de preguntas
-///quizes/:search? parametro opcional
+router.get('/quizes', quizController.index);//acceso a la lista de preguntas
+///quizes/:search? parametro opcional da errores 
 
 router.get('/quizes/:quizId(\\d+)', quizController.show);
 //antes GET/quizes/question (trae una sola pregunta)

@@ -1,4 +1,4 @@
-<form method="get" action="/quizes/" class="busqueda">
+<form method="get" action="/quizes" class="busqueda"><!--ERROR EN EL ACTION POR / estaba de mas-->
 	<input type="text" class="busqueda-box" name='search' placeholder="Busqueda" value="">
 	<input type="submit" class="busqueda-send" value="Buscar">
 </form>
@@ -7,7 +7,7 @@
   <% var i; for (i=0; i < quizes.length; i++){ %>
     <tr>
       <td>
-        <a href="quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a>
+        <a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>
       </td>
     </tr>
   <% } %>
