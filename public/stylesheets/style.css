@@ -246,4 +246,32 @@ h2.autor, p.sub-autor{
 	padding-left: 5px;
 }
 
+#newpreg{
+	margin-top: 5px;
+	background-color: white;
+	border-color: white;
+	border-radius: 5px;
+}
+.newpreg{
+	padding-left: 5px;
+}
+#new_title{
+	font-size: 24px;
+	text-align: center;
+}
+#newform{
+	text-align: center;
+}
+.in-data{
+	margin-top: 10px;
+}
 
+input.in-data{
+	width: 260px;
+}
+.create-link{
+	margin-top: 8px;
+}
+#cancel{
+	color: 	red;
+}

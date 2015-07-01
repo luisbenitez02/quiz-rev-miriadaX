@@ -15,16 +15,15 @@ router.param('quizId', quizController.load);//si el parametro existe ejecuta el 
 //Definimos rutas para el acceso
 /*router.get('/quizes/question', quizController.question);*/
 //Se creo la carpeta quizes y se van a crear unos index
-router.get('/quizes', quizController.index);//acceso a la lista de preguntas
-///quizes/:search? parametro opcional da errores 
+router.get('/quizes', quizController.index);//quizes/:search? parametro opcional da errores 
 
 router.get('/quizes/:quizId(\\d+)', quizController.show);
-//antes GET/quizes/question (trae una sola pregunta)
-//show convenio de rails para mostrar recurso individual
 
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 //antes GEt/quizes/answer (trae parametro para comparar id con respuesta)
 
+router.get('/quizes/new', quizController.new);//nueva pregunta (form)
+router.post('/quizes/create', quizController.create);
 router.get('/author', quizController.author);
 //muestra pagina de autor
 module.exports = router;

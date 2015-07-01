@@ -23,7 +23,7 @@ exports.index = function(req, res){
     var texto = ('%' + param + '%').replace(/ /g,'%');
     if (param) {//si hay parametro opcional hago esto:
         models.Quiz.findAll({
-        	where: ["pregunta like ?", texto],
+        	where: ["pregunta LIKE ?", texto],//para postgress utiliza ILIKE
             order: [['pregunta', 'ASC']]//ESTOS DOS CORCHETES INDISPENSABLES
         }).then(function(quizes) {   
             res.render('quizes/index', {quizes: quizes});
@@ -50,6 +50,26 @@ exports.answer = function(req, res){
 		resultado = 'Correcto';
 	}
 	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado});
+};
+
+//GET quizes/new
+exports.new = function(req, res){
+	//creamos objeto quiz (mismos campso de la DB), 
+	//temporal, aun no se inserta nada en la DB
+	var quiz = models.Quiz.build(
+		{pregunta:'¿Tu Pregunta?', respuesta:'Respuesta'}
+	);
+	res.render('quizes/new', {quiz: quiz});//pintamos en esa ruta
+};
+
+//POST quizes/create
+exports.create = function(req, res){
+	var quiz = models.Quiz.build( req.body.quiz );//parametros accesibles en el body
+	//Guarda en DB campos de pregunta y respuesta
+	quiz.save({fields: ["pregunta","respuesta"]}).then(function(){
+		//alert("¡Tu pregunta ha sido agregada!"); GENERA BUCLE
+		res.redirect('/quizes');//redireccionamos a quizes
+	});
 };
 
 exports.author = function(req, res){
