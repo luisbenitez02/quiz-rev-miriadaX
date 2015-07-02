@@ -22,6 +22,17 @@
 			</ul>
 		</nav>
 		<section class="content" id="s1">
+			<% if(errors.length){ %>
+			<div class="cajaerror">
+				<span id="ErrorMsgs">
+				Corrige estos Errores:<br/>
+				<% for (var i in errors){ %>
+					<span class="logs"><%= errors[i].message %> </span><br/>
+			<%	} %>
+			</span>
+			</div>
+			<% } %>
+			
 			<%- body %>
 		</section>
 		<div class="push"></div>

@@ -26,11 +26,11 @@ exports.index = function(req, res){
         	where: ["pregunta LIKE ?", texto],//para postgress utiliza ILIKE
             order: [['pregunta', 'ASC']]//ESTOS DOS CORCHETES INDISPENSABLES
         }).then(function(quizes) {   
-            res.render('quizes/index', {quizes: quizes});
+            res.render('quizes/index.ejs', {quizes: quizes, errors: []});//le pasamos array de errores
         }).catch(function(error) {next(error);});
     }else {//si no hay nada pinto toda la lista
             models.Quiz.findAll().then(function(quizes) {
-                res.render('quizes/index', {quizes: quizes});
+                res.render('quizes/index.ejs', {quizes: quizes, errors: []});
             }).catch(function(error) {next(error);});
     }
 };
@@ -39,7 +39,7 @@ exports.index = function(req, res){
 exports.show = function(req, res){
 //findAll buscamos todos los datos en la base de datos (con find() buscamos uno)
 	models.Quiz.findById(req.params.quizId).then(function(quiz){
-		res.render('quizes/show', { quiz: req.quiz});//mostramos la pregunta que me entrego load
+		res.render('quizes/show', { quiz: req.quiz, errors: []});//mostramos la pregunta que me entrego load
 	})
 };
 
@@ -49,7 +49,7 @@ exports.answer = function(req, res){
 	if (req.query.respuesta === req.quiz.respuesta) {//verifica que la respuesta esta bien
 		resultado = 'Correcto';
 	}
-	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado});
+	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado, errors: []});
 };
 
 //GET quizes/new
@@ -59,21 +59,32 @@ exports.new = function(req, res){
 	var quiz = models.Quiz.build(
 		{pregunta:'¿Tu Pregunta?', respuesta:'Respuesta'}
 	);
-	res.render('quizes/new', {quiz: quiz});//pintamos en esa ruta
+	res.render('quizes/new', {quiz: quiz, errors: []});//pintamos en esa ruta
 };
 
 //POST quizes/create
 exports.create = function(req, res){
 	var quiz = models.Quiz.build( req.body.quiz );//parametros accesibles en el body
-	//Guarda en DB campos de pregunta y respuesta
-	quiz.save({fields: ["pregunta","respuesta"]}).then(function(){
-		//alert("¡Tu pregunta ha sido agregada!"); GENERA BUCLE
-		res.redirect('/quizes');//redireccionamos a quizes
+	//Vamos a validar los datos ingresados
+	quiz
+	.validate()
+	.then(
+		function(err){
+			if(err){//si da error, damos orden de dibujarlo
+				res.render('quizes/new', { quiz: quiz, errors: err.errors});
+			} else {//si todo esta bien (campos OK)
+			//Guarda en DB campos de pregunta y respuesta
+			quiz
+			.save({fields: ["pregunta","respuesta"]})
+			.then(function(){
+				res.redirect('/quizes');//redireccionamos a quizes
+			});
+		}
 	});
 };
 
 exports.author = function(req, res){
-	res.render('quizes/author', {name: 'Luis Benitez'});
+	res.render('quizes/author', {name: 'Luis Benitez', errors: []});
 };
 /*esa variable pregunta se la estamos enviando a las vistas en la
 carpeta quizes dentro de views*/

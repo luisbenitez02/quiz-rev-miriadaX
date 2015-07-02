@@ -128,3 +128,6 @@ label.in-data{
 #cancel{
 	margin-left: 20px;
 }
+span#ErrorMsgs{
+	font-size: 30px;
+}
