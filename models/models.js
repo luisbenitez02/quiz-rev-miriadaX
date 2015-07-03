@@ -42,23 +42,23 @@ sequelize.sync().then(function(){/*OJO ESTO AHORA SE HACE CON PROMESAS--*/
 		if (count === 0) {//SE INICIALIZA SOLO SI ESTA VACIA
 			Quiz.create({
 				pregunta: '¿Cual es la capital de Italia?',
-				respuesta: 'Roma'
+				respuesta: 'Roma',
+				tema: 'humanidades'
 			});/*.success se ejecuta cuando se haya creado la tabla*/
 			Quiz.create({
 				pregunta: '¿Cual es la capital de Portugal?',
-				respuesta: 'Lisboa'
+				respuesta: 'Lisboa',
+				tema: 'humanidades'
 			});
 			Quiz.create({
 				pregunta: '¿Cual es el Super-heroe grande y verde?',
-				respuesta: 'Hulk'
-			});
-			Quiz.create({
-				pregunta: '¿Cual es el Super-heroe ciego?',
-				respuesta: 'Daredevil'
+				respuesta: 'Hulk',
+				tema: 'ocio'
 			});
 			Quiz.create({
 				pregunta: '¿Cual es el Super-heroe con un martillo?',
-				respuesta: 'Thor'
+				respuesta: 'Thor',
+				tema: 'ocio'
 			})
 			.then(function(){
 				console.log('Base de datos inicializada');

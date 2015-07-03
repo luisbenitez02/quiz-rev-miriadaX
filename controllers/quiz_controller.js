@@ -57,7 +57,7 @@ exports.new = function(req, res){
 	//creamos objeto quiz (mismos campso de la DB), 
 	//temporal, aun no se inserta nada en la DB
 	var quiz = models.Quiz.build(
-		{pregunta:'¿Tu Pregunta?', respuesta:'Respuesta'}
+		{pregunta:'¿Tu Pregunta?', respuesta:'Respuesta', tema:'otro'}
 	);
 	res.render('quizes/new', {quiz: quiz, errors: []});//pintamos en esa ruta
 };
@@ -75,7 +75,7 @@ exports.create = function(req, res){
 			} else {//si todo esta bien (campos OK)
 			//Guarda en DB campos de pregunta y respuesta
 			quiz
-			.save({fields: ["pregunta","respuesta"]})
+			.save({fields: ["pregunta","respuesta","tema"]})
 			.then(function(){
 				res.redirect('/quizes');//redireccionamos a quizes
 			});
@@ -91,12 +91,13 @@ exports.edit = function(req, res){
 exports.update = function(req, res){
 	req.quiz.pregunta = req.body.quiz.pregunta;
 	req.quiz.respuesta = req.body.quiz.respuesta;
+	req.quiz.tema = req.body.quiz.tema;//recogemos campo de tema
 
 	req.quiz.validate().then( function(err){
 		if(err){
 			res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
 		} else{//guarda los campos actualizados
-			req.quiz.save({ fields: ['pregunta', 'respuesta']})
+			req.quiz.save({ fields: ['pregunta', 'respuesta','tema']})
 			.then( function() {res.redirect('/quizes');}); 
 		}
 	});

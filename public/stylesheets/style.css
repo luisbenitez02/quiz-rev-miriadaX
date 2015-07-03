@@ -291,5 +291,17 @@ input.in-data{
 	color: black;
 	font-style: italic;
 }
+.tematic{
+	padding-left: 2px;
+	padding-right: 2px;
+	border: 1px solid white;
+	border-radius: 4px;
+	font-size: 14px;
+	color: white;
+}
+
+#tema{
+	margin-top: 10px;
+}
 
 
