@@ -90,7 +90,8 @@ section{
 	font-size: 28px;
 	margin-bottom: 10px;
 }
-.list-question a{
+.list-question a, #editi{
+	margin-bottom: 12px;
 	font-size: 32px;
 }
 .busqueda{
@@ -130,4 +131,7 @@ label.in-data{
 }
 span#ErrorMsgs{
 	font-size: 30px;
+}
+.edit_quest{
+	font-size:42px;
 }

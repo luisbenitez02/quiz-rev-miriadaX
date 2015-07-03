@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //vamos a instalar el middleware para nuestra vista comun layout
 var partials = require('express-partials');
+var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
 //var users = require('./routes/users'); SE BORRO POR QUE NO LO VAMOS A HACER ASI
@@ -26,6 +27,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
