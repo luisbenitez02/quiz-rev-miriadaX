@@ -6,7 +6,8 @@ var models = require('../models/models.js');//importamos el modelo
 //lo asigna a quiz.req y ejecuta el middleware correspondiente con next
 //middleware que sigue
 exports.load = function(req, res, next, quizId){
-	models.Quiz.findById(quizId).then(
+//models.Quiz.findById(quizId, include: [{model: models.Comment}]).then(
+	models.Quiz.find({ where: {id: Number(quizId)}, include: [{model: models.Comment}]}).then(
 		function(quiz){
 			if (quiz) {
 				req.quiz = quiz;

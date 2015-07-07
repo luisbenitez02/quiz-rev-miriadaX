@@ -303,5 +303,27 @@ input.in-data{
 #tema{
 	margin-top: 10px;
 }
+#new_comment{
+	font-size: 14px;
+	margin-top: 10px;
+	margin-left: 5px;
+}
 
+.comments{
+	margin-left: 5px;
+}
 
+#comment_title{
+	font-size: 18px;
+}
+#ajust{
+	margin-top: 10px;
+	text-decoration: none;
+}
+.form_comment{
+	text-align: center;
+}
+
+#micomment{
+	padding-top: 20px;
+}

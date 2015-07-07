@@ -3,6 +3,7 @@ var router = express.Router();
 
 //Pasos 1b y 1c Importamos el enrutador
 var quizController = require('../controllers/quiz_controller');
+var commentController = require('../controllers/comment_controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,6 +28,10 @@ router.post('/quizes/create', quizController.create);
 router.get('/quizes/:quizId(\\d+)/edit', quizController.edit);//editar pregunta
 router.put('/quizes/:quizId(\\d+)', quizController.update);//actualiza pregunta en la DB
 router.delete('/quizes/:quizId(\\d+)', quizController.destroy);//borra pregunta
-router.get('/author', quizController.author);
-//muestra pagina de autor
+router.get('/author', quizController.author);//muestra pagina de autor
+
+router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
+router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
+
+
 module.exports = router;

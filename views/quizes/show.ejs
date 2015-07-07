@@ -4,4 +4,11 @@
 		<input type="text" name='respuesta' placeholder="Responda Aquí" value="" class="cajetin-p">
 
 		<input type="submit" value="Enviar" class="boton-send">
-	</form>
+</form>
+
+<a id="ajust" href="/quizes/<%= quiz.id %>/comments/new"><button class="boton-send" id="new_comment">Nuevo comentario</button></a>
+
+<p id="comment_title" class="comments"><strong>Comentarios:</strong></p>
+<% for(index in quiz.Comments){%>
+	<p class="comments">- <%= quiz.Comments[index].texto %></p>
+<%}%>

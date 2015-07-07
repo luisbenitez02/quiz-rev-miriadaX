@@ -5,11 +5,11 @@ module.exports = function(sequelize, DataTypes){
 		/*Nombre del campo: tipo de dato*/
 		{ pregunta: { 
 			type: DataTypes.STRING,
-			validate: { notEmpty: {msg: "Upps! Falta tu Pregunta"}}
+			validate: { notEmpty: {msg: "-> Upps! Falta tu Pregunta"}}
 		},
 		  respuesta: {
 		  	type: DataTypes.STRING,
-		  	validate: { notEmpty: {msg: "¡Olvidaste la Respuesta!"}}
+		  	validate: { notEmpty: {msg: "-> ¡Olvidaste la Respuesta!"}}
 		  },
 		  tema: {
 		  	type: DataTypes.STRING

@@ -141,3 +141,20 @@ span#ErrorMsgs{
 #tema{
 	font-size: 40px;
 }
+#new_comment{
+	font-size: 30px;
+}
+.comments{
+	font-size: 28px;
+}
+#comment_title{
+	padding-top: 10px;
+	font-size: 30px;
+}
+#ajust{
+	display: inline-block;
+	text-decoration: none;
+}
+.form_comment{
+	font-size: 38px;
+}
