@@ -4,11 +4,16 @@
 <input class="in-data" type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"><p>
 <label class="in-data form-new" for="tema" id="lista">Tematica:</label>
  <select name="quiz[tema]" id="tema">
-  <option value="otro" selected>Otro</option>
-  <option value="humanidades">Humanidades</option>
-  <option value="ocio">Ocio</option>
-  <option value="ciencia">Ciencia</option>
-  <option value="tecnologia">Tecnología</option>
+   <% var op = ['otro','humanidades','ocio','ciencia','tecnologia']; %>
+  <% for (var i = 0; i < op.length; i++) { %>
+     <% if(quiz.tema === op[i]) { %>
+        <option value="<%= op[i]%>" selected><%= op[i] %></option>
+     <% } else { %>
+        <option value="<%= op[i] %>" ><%= op[i] %></option>
+     <% } %>
+  <% } %> <!--Vemos si ya hay un atributo en la DB y lo marcamos en el select (mejora visual)-->
+
+ 
 </select><p>
 <input class="create-link" type="submit" value="Guardar">
 <a href="/quizes"><button type="button" class="create-link" id="cancel">Cancelar</button></a>

@@ -13,7 +13,13 @@
 			<h2>Quiz Game</h2>
 			<div id="botons">
 				<button class="inter" id="reg">Registrate</button>
-				<button class="inter" id="acces">Acceder</button>
+				<%if(!session.user){%>
+					<a href="/login"><button class="inter" id="acces">Acceder</button></a>
+				<%} else{%>
+				<form method="post" action="/logout?_method=delete">
+					<button class="inter" id="acces" type="submit"><%=session.user.username%></button>
+				</form>
+				<%}%> 
 			</div>
 		</header>
 			<nav class="main">

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 //vamos a instalar el middleware para nuestra vista comun layout
 var partials = require('express-partials');
 var methodOverride = require('method-override');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 //var users = require('./routes/users'); SE BORRO POR QUE NO LO VAMOS A HACER ASI
@@ -26,9 +27,22 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+app.use(cookieParser('Qu1z_Luisb0204'));
+app.use(session());//usamos session, instalar MV session
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+//HELPERS DINAMICOS
+app.use(function(req, res, next){
+  //guardar path de url en session.redir para cuando haga login (carga con autenticado)
+  if (!req.path.match(/\/login|\/logout/)) {
+    req.session.redir = req.path;
+  }
+
+  //hacer visible req.session en las vistas
+  res.locals.session = req.session;
+  next();
+});
 
 app.use('/', routes);
 //app.use('/users', users);

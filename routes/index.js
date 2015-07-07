@@ -4,6 +4,7 @@ var router = express.Router();
 //Pasos 1b y 1c Importamos el enrutador
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
+var sessionController = require('../controllers/session_controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,9 +14,12 @@ router.get('/', function(req, res, next) {
 /*OJOOO ESTE AUTOLOAD VA AQUI ANTES DE QUE SE EVALUEN EL RESTO*/
 router.param('quizId', quizController.load);//si el parametro existe ejecuta el load
 
+//Definicion rutas de Session
+router.get('/login', sessionController.new);//form autenticacion
+router.post('/login', sessionController.create);//inicia la sesion
+router.delete('/logout', sessionController.destroy);//deberia ser delete no tenemos DB con sesiones y usuarios
+
 //Definimos rutas para el acceso
-/*router.get('/quizes/question', quizController.question);*/
-//Se creo la carpeta quizes y se van a crear unos index
 router.get('/quizes', quizController.index);//quizes/:search? parametro opcional da errores 
 
 router.get('/quizes/:quizId(\\d+)', quizController.show);
