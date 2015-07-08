@@ -1,3 +1,13 @@
+//MV de acceso a rutas que requieren autenticacion
+exports.loginRequired = function(res, res, next){
+	if (req.session.user) {
+		next();//si existe usuario autenticado ejecuta siguiente middleware
+	}
+	else{//de lo contrario manda a login
+		res.redirect('/login');
+	}
+}
+
 //Get login
 exports.new = function(req,res){
 	var errors = req.session.errors || {};//inicio variable de errores con los que trae o vacia

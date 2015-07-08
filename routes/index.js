@@ -27,12 +27,14 @@ router.get('/quizes/:quizId(\\d+)', quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 //antes GEt/quizes/answer (trae parametro para comparar id con respuesta)
 
-router.get('/quizes/new', quizController.new);//nueva pregunta (form)
-router.post('/quizes/create', quizController.create);
-router.get('/quizes/:quizId(\\d+)/edit', quizController.edit);//editar pregunta
-router.put('/quizes/:quizId(\\d+)', quizController.update);//actualiza pregunta en la DB
-router.delete('/quizes/:quizId(\\d+)', quizController.destroy);//borra pregunta
-router.get('/author', quizController.author);//muestra pagina de autor
+//rutas que requieren autenticacion de usuario
+//llamamos un exports especcifico de sessionController
+router.get('/quizes/new', sessionController.loginRequired, quizController.new);//nueva pregunta (form)
+router.post('/quizes/create', sessionController.loginRequired, quizController.create);
+router.get('/quizes/:quizId(\\d+)/edit', sessionController.loginRequired,  quizController.edit);//editar pregunta
+router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.update);//actualiza pregunta en la DB
+router.delete('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.destroy);//borra pregunta
+router.get('/author', sessionController.loginRequired, quizController.author);//muestra pagina de autor
 
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
