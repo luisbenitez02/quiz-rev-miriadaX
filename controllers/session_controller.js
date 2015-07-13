@@ -1,5 +1,5 @@
 //MV de acceso a rutas que requieren autenticacion
-exports.loginRequired = function(res, res, next){
+exports.loginRequired = function(req, res, next){
 	if (req.session.user) {
 		next();//si existe usuario autenticado ejecuta siguiente middleware
 	}

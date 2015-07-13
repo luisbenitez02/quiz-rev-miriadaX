@@ -13,6 +13,8 @@ router.get('/', function(req, res, next) {
 
 /*OJOOO ESTE AUTOLOAD VA AQUI ANTES DE QUE SE EVALUEN EL RESTO*/
 router.param('quizId', quizController.load);//si el parametro existe ejecuta el load
+//si la ruta trae parametro comentId
+router.param('commentId', commentController.load);
 
 //Definicion rutas de Session
 router.get('/login', sessionController.new);//form autenticacion
@@ -34,10 +36,12 @@ router.post('/quizes/create', sessionController.loginRequired, quizController.cr
 router.get('/quizes/:quizId(\\d+)/edit', sessionController.loginRequired,  quizController.edit);//editar pregunta
 router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.update);//actualiza pregunta en la DB
 router.delete('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.destroy);//borra pregunta
-router.get('/author', sessionController.loginRequired, quizController.author);//muestra pagina de autor
+router.get('/author', /*sessionController.loginRequired,*/ quizController.author);//muestra pagina de autor
 
+//rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
-
+//primero requiere login, luego 
+router.put('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', sessionController.loginRequired, commentController.publish);
 
 module.exports = router;
