@@ -32,6 +32,24 @@ app.use(session());//usamos session, instalar MV session
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*Middleware que mata la sesion luego de 2 minutos de inactividad*/
+//mata cualquier peticion aunque no requiera login
+app.use(function(req, res, next){
+    var expira = 120000;//2 minutos 120000 milisegundos
+    var now = new Date().getTime();//captura tiempo actual en milisegundos
+    
+    //parametros de sesion y parametro de ultima transaccion (Si existen)
+    if(req.session && req.session.lastAccess) {
+    var lifetime = now - req.session.lastAccess;//tiempo de vida actual transaccion - ultima
+        if (lifetime >= expira){//si el tiempo de vida es mayor que tantos segundos para expirar
+            delete req.session.user;//borramos sesion
+        }
+    }
+    req.session.lastAccess = now;//ultimo acceso esta nueva transaccion
+    next();
+});
+/*------------------------------------------------------------------*/
+
 //HELPERS DINAMICOS
 app.use(function(req, res, next){
   //guardar path de url en session.redir para cuando haga login (carga con autenticado)
