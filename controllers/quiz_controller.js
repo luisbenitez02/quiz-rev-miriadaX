@@ -5,7 +5,7 @@ var models = require('../models/models.js');//importamos el modelo
 //busca en la base de datos y cuando tiene el objeto verifica si existe
 //lo asigna a quiz.req y ejecuta el middleware correspondiente con next
 //middleware que sigue
-exports.load = function(req, res, next, quizId){
+exports.load = function (req, res, next, quizId){
 //models.Quiz.findById(quizId, include: [{model: models.Comment}]).then(
 	models.Quiz.find({ where: {id: Number(quizId)}, include: [{model: models.Comment}]}).then(
 		function(quiz){
@@ -115,3 +115,29 @@ exports.author = function(req, res){
 };
 /*esa variable pregunta se la estamos enviando a las vistas en la
 carpeta quizes dentro de views*/
+
+exports.statistics = function(req, res){
+    /*En este array gurdaremos los numeros extraidos de la DB al contar */
+    var datos = {preguntas:0, comentarios:0, promedio:0, con_coment:0, sin_coment:0};
+    
+    /*Vamos a contar todo del modelo Quiz (incluimos modelo comment con el que se relaciona)*/
+    models.Quiz.findAndCountAll({include: [{model: models.Comment}]}).then(function(quiz){
+       var registros = quiz.rows;/*arroja array de objetos*/
+       var comit=0;
+        var i=0;
+       datos.preguntas=registros.length;/*medimos su tamaño*/
+        
+        registros.forEach( function(reg){//esa variable reg puede llevar cualquier nombre
+            //ya he intentado con varios y todos funcionan igual, es raro.... (se puede llamar pep)
+              comit=reg.Comments.length;//NO TENGO IDEA DE POR QUE COMMENTS EN VEZ DE COMMENT SIN S
+            if(comit){//si hay comentario en la pregunta cuenta
+               datos.con_coment++;
+            } else{//si no pues cuenta en el otro
+                datos.sin_coment++;
+            }
+            datos.comentarios+=comit;//
+            });
+       datos.promedio=Math.ceil(datos.comentarios/datos.preguntas);//promedio
+    	res.render('quizes/statistics', {data: datos, errors: []});
+    });
+};

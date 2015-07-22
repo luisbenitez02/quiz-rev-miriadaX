@@ -36,6 +36,8 @@ router.post('/quizes/create', sessionController.loginRequired, quizController.cr
 router.get('/quizes/:quizId(\\d+)/edit', sessionController.loginRequired,  quizController.edit);//editar pregunta
 router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.update);//actualiza pregunta en la DB
 router.delete('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.destroy);//borra pregunta
+
+router .get('/quizes/statistics', quizController.statistics);
 router.get('/author', /*sessionController.loginRequired,*/ quizController.author);//muestra pagina de autor
 
 //rutas de comentarios

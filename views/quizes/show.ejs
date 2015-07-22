@@ -1,21 +1,55 @@
 <!-- esto antes era la vista question.ejs  -->
-<form method="get" action="/quizes/<%= quiz.id %>/answer" class="form-pregunta">
-		<p class="pregunta-text"> <%= quiz.pregunta %> </p> <!--tomo la pregunta-->
-		<input type="text" name='respuesta' placeholder="Responda Aquí" value="" class="cajetin-p">
+ <style>
+  .demo-card-wide.mdl-card {
+    width: 100%;
+  }
+  .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 280px;
+    background: url('/images/header.png') center / cover;
+  }
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+  .coments{
+      display: inline-block;
+  }
+</style>
 
-		<input type="submit" value="Enviar" class="boton-send">
-</form>
-
-<a id="ajust" href="/quizes/<%= quiz.id %>/comments/new"><button class="boton-send" id="new_comment">Nuevo comentario</button></a>
-
-<p id="comment_title" class="comments"><strong>Comentarios:</strong></p>
-<% for(index in quiz.Comments){%>
+<div class="mdl-card mdl-shadow--2dp demo-card-wide">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text"><%= quiz.pregunta %></h2><!--tomo la pregunta-->
+  </div>
+  <div class="mdl-card__supporting-text">
+  <p><strong>Pistas</strong></p>
+   
+    <% for(index in quiz.Comments){%>
 		<%if(quiz.Comments[index].publicado || session.user){%>
-			<p class="comments">- <%= quiz.Comments[index].texto %>
+			<p class="coments" id="text-c"> <%= quiz.Comments[index].texto %></p>
+			
 			<% if (session.user && !quiz.Comments[index].publicado){%>
-				<form method="post" action="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish?_method=put">
-					<button type="submit" id="coments">Publicar</button>
+				<form method="post" action="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish?_method=put" class="coments">
+				<button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" type="submit">
+                  <i class="material-icons">done</i> <!-- botoncito de publicar -->
+                </button>
 				</form>
 			<%}%>
-		<%}%>
+		<%}%> <br>
 <%}%>
+ <a href="/quizes/<%= quiz.id %>/comments/new"><button class="mdl-button mdl-js-button mdl-button--primary">
+  Nueva Pista
+     </button></a>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+   <form method="get" action="/quizes/<%= quiz.id %>/answer" class="form-pregunta">
+       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+    <input class="mdl-textfield__input" type="text" id="sample3" value="" name="respuesta"/>
+    <label class="mdl-textfield__label" for="sample3">Respuesta</label>
+  </div>
+  <br>
+   <button class="mdl-button mdl-js-button mdl-button--accent" type="submit">
+  Enviar
+</button>
+    </form>
+  </div>
+</div><br>

@@ -1,4 +1,28 @@
-<p class="edit_quest">Edite la pregunta:</p>
-<form method="post" action="/quizes/<%= quiz.id %>?_method=put" id="edit_quest">
-	<% include _form.ejs %><!--traemos form-->
-</form>
+<!-- Wide card with share menu button -->
+<style>
+  .demo-card-wide.mdl-card {
+    width: 100%;
+  }
+  .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 320px;
+    background: url('/images/new.png') center / cover;
+  }
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+    #mi-for{
+        width: 100%;
+        display:block;
+    }
+</style>
+<div class="mdl-card mdl-shadow--2dp demo-card-wide">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Edite la pregunta</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <form method="post" action="/quizes/<%= quiz.id %>?_method=put" id="mi-for">
+	    <% include _form.ejs%>
+    </form>
+  </div>
+</div><br>

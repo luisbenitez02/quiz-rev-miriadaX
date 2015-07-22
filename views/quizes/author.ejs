@@ -1,7 +1,30 @@
-	<div class="imagen">
-		<img class="author-pic" src="/images/profile.jpg" alt="">
-	</div>
-	<h2 class="autor">
-		Desarrollado por <%= name %>
-	</h2>
-	<p class="sub-autor">Para el Curso de Node.js de MiriadaX, Basado en el codigo compartido en el modulo 6</p>
+<!-- Square card -->
+<style>
+  .demo-card-square.mdl-card {
+    width: 320px;
+    height: 480px;
+  }
+  .demo-card-square > .mdl-card__title {
+    color: #fff;
+    background:
+      url('/images/profile.jpg') #46B6AC;
+  }
+    #cartica{
+        margin: auto;
+        margin-top:50px;
+    }
+</style>
+
+<div class="mdl-card mdl-shadow--2dp demo-card-square" id="cartica">
+  <div class="mdl-card__title mdl-card--expand">
+    <h2 class="mdl-card__title-text"><%= name %></h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Desarrollo de fork del proyecto Quiz de MiriadaX implementando Material Design
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://twitter.com/YoLuisBenitez">
+      Twitter
+    </a>
+  </div>
+</div><br>

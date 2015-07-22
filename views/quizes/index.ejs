@@ -1,32 +1,78 @@
-<form method="get" action="/quizes" class="busqueda"><!--ERROR EN EL ACTION POR / estaba de mas-->
-	<input type="text" class="busqueda-box" name='search' placeholder="Busqueda" value="">
-	<input type="submit" class="busqueda-send" value="Buscar">
-</form>
-
-<table class="list-question">
-  <% var i; for (i=0; i < quizes.length; i++){ %>
+<style>
+    .inter{
+        margin: auto;
+        margin-top: 50px;
+    }
+    
+    #edita{
+        color: #f44336;
+    }
+     #mio{
+      width: 60px;
+      height: 60px;
+      margin: auto;
+      margin-bottom: 50px;
+    }
+</style>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp inter">
+  <thead>
+   <tr>
+       <th>
+          <form method="get" action="/quizes">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable textfield-demo">
+    <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+      <i class="material-icons">search</i>
+    </label>
+    <div class="mdl-textfield__expandable-holder">
+      <input class="mdl-textfield__input" type="text" id="sample6" value="" name='search'/>
+      <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+    </div>
+  </div>
+</form> 
+       </th>
+   </tr>
     <tr>
-      <td>
-        <a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>
+      <th class="mdl-data-table__cell--non-numeric">Pregunta</th>
+      <th>Tema</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+   <% var i; for (i=0; i < quizes.length; i++){ %>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">
+          <a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>
       </td>
-      <td>
-        <span class="tematic"><%= quizes[i].tema %></span>
-      </td>
+      <td><%= quizes[i].tema %></td>
+      <!--<td>$2.90</td>-->
       <%if(session.user){%>
         <td>
-        <a href="quizes/<%= quizes[i].id %>/edit"><button type="button" class="editi">Editar</button></a>
+        <a href="quizes/<%= quizes[i].id %>/edit">
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+  <i class="material-icons">edit</i>
+</button>
+        </a>
       </td>
       <td>
         <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
-          <button class="editi" type="submit" onclick="return confirm('Seguro quieres borrar: <%= quizes[i].pregunta %>');">
-            Borrar
-          </button>
+         <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" type="submit"                 onclick="return confirm('Seguro quieres borrar: <%= quizes[i].pregunta %>');" id="edita">
+              <i class="material-icons">delete</i>
+        </button>         
         </form>
       </td>
       <%}%>
     </tr>
-  <% } %>
+    <%}%>
+  </tbody>
 </table>
+<br>
 <%if(session.user){%>
-<a href="/quizes/new" class="newpreg"><button type="button" id="newpreg">Nueva Pregunta</button></a>
+<div id="mio">
+    <a href="/quizes/new" class="newpreg">
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+  <i class="material-icons">add</i>
+</button>
+</a>
+</div>
 <%}%>
+

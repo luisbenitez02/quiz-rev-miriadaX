@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /*Middleware que mata la sesion luego de 2 minutos de inactividad*/
 //mata cualquier peticion aunque no requiera login
 app.use(function(req, res, next){
-    var expira = 120000;//2 minutos 120000 milisegundos
+    var expira = 600000;//2 minutos 120000 milisegundos
     var now = new Date().getTime();//captura tiempo actual en milisegundos
     
     //parametros de sesion y parametro de ultima transaccion (Si existen)

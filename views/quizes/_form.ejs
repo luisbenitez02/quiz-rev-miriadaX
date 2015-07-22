@@ -1,7 +1,32 @@
-<label class="in-data form-new" for="preg">Pregunta:</label>
-<input class="in-data" type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"><p>
-<label class="in-data form-new" for="resp">Respuesta:</label>
-<input class="in-data" type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"><p>
+<style>
+    .mi-input{
+        width: 100%;
+    }
+    #lista{
+        color:#2196F3;
+    }
+    #tema{
+        font-size: 16px;
+    }
+</style>
+
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo mi-input">
+    <input class="mdl-textfield__input" type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"/>
+    <label class="mdl-textfield__label" for="preg">Pregunta</label>
+</div>
+
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo mi-input">
+    <input class="mdl-textfield__input" type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"/>
+    <label class="mdl-textfield__label" for="resp">Respuesta</label>
+</div>
+
+
+
+<!--<label class="in-data form-new" for="preg">Pregunta:</label>-->
+<!--<input class="in-data" type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"><p>-->
+<!--<label class="in-data form-new" for="resp">Respuesta:</label>-->
+<!--<input class="in-data" type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"><p>-->
+<div>
 <label class="in-data form-new" for="tema" id="lista">Tematica:</label>
  <select name="quiz[tema]" id="tema">
    <% var op = ['otro','humanidades','ocio','ciencia','tecnologia']; %>
@@ -12,9 +37,14 @@
         <option value="<%= op[i] %>" ><%= op[i] %></option>
      <% } %>
   <% } %> <!--Vemos si ya hay un atributo en la DB y lo marcamos en el select (mejora visual)-->
-
- 
-</select><p>
-<input class="create-link" type="submit" value="Guardar">
-<a href="/quizes"><button type="button" class="create-link" id="cancel">Cancelar</button></a>
+</select>
+ </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <button class="mdl-button mdl-js-button mdl-button--accent" type="submit">
+  Guardar
+</button>
+ <a href="/quizes"><button class="mdl-button mdl-js-button mdl-button--primary" type="button">
+  Cancelar
+</button></a>
+  </div>
 <!-- se pone type="" para no entrar en conflicto con submit-->

@@ -3,51 +3,83 @@
 <head>
 	<meta charset="utf-8">
 	<title> Preguntas </title>
-	<link rel="stylesheet" href="/stylesheets/style.css">
-	<link rel="stylesheet" type="text/css" media="only screen and (min-width: 851px)" href="/stylesheets/wide.css">
-	<link rel="stylesheet" type="text/css" media="only screen and (min-device-width : 320px) and (max-device-width : 480px)" href="/stylesheets/phone.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/stylesheets/material.min.css">
+    <script src="/javascripts/material.min.js"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-<body>
-	<div class="page-wrap">
-		<header class="main">
-			<h2>Quiz Game</h2>
-			<div id="botons">
-				<button class="inter" id="reg">Registrate</button>
-				<%if(!session.user){%>
-					<a href="/login"><button class="inter" id="acces">Acceder</button></a>
-				<%} else{%>
-				<form method="post" action="/logout?_method=delete">
-					<button class="inter" id="acces" type="submit"><%=session.user.username%></button>
+<body class="site">
+    <div class="demo-layout">
+      <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+                  mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+          <div class="mdl-layout__header-row">
+            <div class="mdl-layout-spacer"></div>
+            <%if(!session.user){%>
+                <a href="/login"><button class="mdl-button mdl-js-button" style="color:white;">Login</button></a>
+            <%} else{%>
+               <!-- Si YA inicio sesion sale al pulsar el boton -->
+                <form method="post" action="/logout?_method=delete">
+					<button class="mdl-button mdl-js-button" style="color:white;" type="submit">                                <%=session.user.username%>
+					</button>
 				</form>
-				<%}%> 
-			</div>
-		</header>
-			<nav class="main">
-			<ul class="main-list">
-				<li class="main-item"><a href="/" class="main-link" id="link-1">Inicio</a></li><li class="main-item"><a href="/quizes" class="main-link" id="link-2">Preguntas</a></li><li class="main-item"><a href="/author" class="main-link" id="link-3">Autor</a></li>
-			</ul>
-		</nav>
-		<section class="content" id="s1">
-			<% if(errors.length){ %>
-			<div class="cajaerror">
-				<span id="ErrorMsgs">
-				Corrige estos Errores:<br/>
-				<% for (var i in errors){ %>
+            <%}%>
+            <button class="mdl-button mdl-js-button" disabled>Registro</button>
+          </div>
+        </header>
+        <div class="mdl-layout__drawer">
+          <span class="mdl-layout-title">Quiz Game</span>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/">Inicio</a>
+            <a class="mdl-navigation__link" href="/quizes">Preguntas</a>
+            <a class="mdl-navigation__link" href="/quizes/statistics">Estadisticas</a>
+            <a class="mdl-navigation__link" href="/author">Autor</a>
+          </nav>
+        </div>
+        <main class="mdl-layout__content"><!--Aqui va el contenido-->
+          <div class="page-content">
+            
+             <% if(errors.length){ %>     
+             <style>
+              .demo-card-square.mdl-card {
+                width: 320px;
+                height: 320px;
+              }
+              .demo-card-square > .mdl-card__title {
+                color: #ffa000;
+                background:
+                  url('/images/error.png') bottom right 15% no-repeat #46B6AC;
+              }
+            </style>
+            <div class="mdl-card mdl-shadow--2dp demo-card-square">
+              <div class="mdl-card__title mdl-card--expand">
+                <h2 class="mdl-card__title-text">Upp! Errores:</h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                <% for (var i in errors){ %>
 					<span class="logs"><%= errors[i].message %> </span><br/>
-			<%	} %>
-			</span>
-			</div>
-			<% } %>
-			
-			<%- body %>
-		</section>
-		<div class="push"></div>
-	</div>
-	<footer class="pie" id="f1">
-			<p class="footer-text" id="izq"><a href="http://es.wikipedia.org/wiki/Quiz" target="_blank">¿Que es un Quiz?</a></p>
-			<p class="footer-text"><a href="https://github.com/luisbenitez02/quiz-rev-miriadaX" target="_blank">Github</a></p>
-			<br>
-			<div class="centerone"><p class="info-display"></p></div>
-		</footer>
+			    <%	} %>
+              </div>
+            </div>
+            <% } %> 
+                     
+              <%- body %>
+          </div>
+          
+          <!-- FOOOTER -->
+            
+                     <footer class="mdl-mini-footer">
+  <div class="mdl-mini-footer--left-section">
+    <div class="mdl-logo">Title</div>
+    <ul class="mdl-mini-footer--link-list">
+      <li><a href="#">Help</a></li>
+      <li><a href="#">Privacy & Terms</a></li>
+    </ul>
+  </div>
+</footer> 
+            
+        </main> 
+      </div>
+    </div>
 </body>
 </html>

@@ -1,13 +1,93 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body> -->
-    <h3 class="inicio-text" id="title">Bienvenido a <%= title %></h3>
-    <p class="text1">La App donde podras crear tus propias preguntas</p>
-    <p class="descrip"><a href="/quizes" class="descrip-link">¡COMIENZA A JUGAR!</a></p>
-<!--   </body>
-</html>
- -->
+<style>
+  .demo-card-wide.mdl-card {
+    width: 100%;
+  }
+  .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 320px;
+    background: url('/images/portada.jpg') center / cover;
+  }
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+</style>
+
+<div class="mdl-card mdl-shadow--2dp demo-card-wide">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Bienvenido a <%= title %> Game</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    El juego donde podras crear tus propias preguntas y divertirte con tus amigos esten donde esten.
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      ¡Comienza a Jugar!
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+    <!--<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">share</i>
+    </button>-->
+  </div>
+</div>
+
+<div class="demo-grid-1 mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+
+           <div class="mdl-card mdl-shadow--2dp demo-card-image" id="two">
+               <div class="mdl-card__title mdl-card--expand"></div>
+               <div class="mdl-card__actions">
+                   <span class="demo-card-image__filename">Diviertete</span>
+               </div>
+           </div>
+         </div>
+         
+  <div class="mdl-cell mdl-cell--4-col">
+      
+      <style>
+              #one{
+                  background: url('/images/buho.png') center / cover;
+                  background-color:#7e57c2;
+              }
+              
+              #two{
+                  background: url('/images/cohete.png') center / cover; 
+                  background-color:#9ccc65;
+              }
+              #three{
+                  background: url('/images/premio.png') center / cover; 
+                  background-color:#ef5350;
+              }
+            .demo-card-image.mdl-card {
+                width: 256px;
+                height: 256px;
+            }
+            .demo-card-image > .mdl-card__actions {
+              height: 52px;
+              padding: 16px;
+              background: rgba(0, 0, 0, 0.2);
+            }
+            .demo-card-image__filename {
+              color: #fff;
+            }
+          </style>
+
+           <div class="mdl-card mdl-shadow--2dp demo-card-image" id="one">
+               <div class="mdl-card__title mdl-card--expand"></div>
+               <div class="mdl-card__actions">
+                   <span class="demo-card-image__filename" id="one-c">Aprende</span>
+               </div>
+         </div>
+         
+  </div>
+  <div class="mdl-cell mdl-cell--4-col">
+
+           <div class="mdl-card mdl-shadow--2dp demo-card-image" id="three">
+               <div class="mdl-card__title mdl-card--expand"></div>
+               <div class="mdl-card__actions">
+                   <span class="demo-card-image__filename">Gana</span>
+               </div>
+           </div>
+         </div>
+         
+</div>
